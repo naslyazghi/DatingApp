@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace API
     public class Startup
     {
         private readonly IConfiguration _config;
-
+        private string  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration config)
         {
             _config = config;
@@ -28,9 +29,19 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(options => {
+            services.AddDbContext<DataContext>(options =>
+            {
                 options.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins, policy  =>
+                {
+                    policy.WithOrigins("https://localhost:4200");
+                });
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,6 +59,8 @@ namespace API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();
