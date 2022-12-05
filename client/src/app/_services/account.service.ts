@@ -36,7 +36,10 @@ export class AccountService {
     //https://localhost:5001/api/account/login
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
       map((response: User) => {
+        console.log(response);
         const user = response;
+        var jsonUser = JSON.stringify(user);
+        console.log(jsonUser);
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
