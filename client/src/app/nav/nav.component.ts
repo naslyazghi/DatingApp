@@ -30,7 +30,6 @@ export class NavComponent implements OnInit{
     this.accountService.login(this.model).subscribe({
       // if we don't wanna pass anytything, we can use () or {} or _
       next: _ => this.router.navigateByUrl('/members'),
-      error: error => this.toastr.error(error.error),
     })
   }
 
