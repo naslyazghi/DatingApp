@@ -31,6 +31,7 @@
               "node_modules/font-awesome/css/font-awesome.min.css",
               "@angular/material/prebuilt-themes/purple-green.css",
               "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-spinner/animations/square-jelly-box.css",
               "src/styles.css"
             ],
             "scripts": []
