@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { User } from '../_modules/user';
+import { environment } from 'src/assets/environments/environment';
+import { User } from '../_models/user';
 
 //---------------------------------------------------------
 
@@ -16,7 +17,7 @@ export class AccountService {
   //              1 . D E C L A R A T I O N S
   //------------------------------------------------------------------------------------
 
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrl;
   // BehviorSubject, type of the behavior is set to either null or User since User can't be null, using the pipe symbole in TypeScript (union type)
   private currentUserSource = new BehaviorSubject<User | null>(null);
   // Dollar is a convention to signify this is an observable
