@@ -35,6 +35,11 @@ namespace API.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPhotoService, PhotoService>();
 
+            // Add services for Action filter
+            // This service will automatically retrieve the username when a user logs in and update the LastActive property for that user. 
+            // (Kind of a middleware but this one is an action filter that will act only on specific controller and endpoint instead of middleware that will act anytime there is a request on all controllers and endpoints)
+            services.AddScoped<LogUserActivity>();
+
             // Add automapper service
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             
