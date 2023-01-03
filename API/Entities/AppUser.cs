@@ -21,6 +21,10 @@ namespace API.Entities
         public string Country { get; set; } 
         public List<Photo> Photos { get; set; } = new();
 
+        // Those properties for the joint table to support many to many relationship
+        public List<UserLike> LikedByUsers { get; set; }
+        public List<UserLike> LikedUsers { get; set; }
+
 
         //Automapper will automatically reconizes this method since it has the Age property and Get Keyword and mapp the dateOfBirth of AppUser class to Age in the MemberDto class
         // public int GetAge() 

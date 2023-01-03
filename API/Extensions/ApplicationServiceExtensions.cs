@@ -32,8 +32,10 @@ namespace API.Extensions
 
             // Addd services for dependency Injection
             services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILikesRepository, LikesRepository>();
+
 
             // Add services for Action filter
             // This service will automatically retrieve the username when a user logs in and update the LastActive property for that user. 
