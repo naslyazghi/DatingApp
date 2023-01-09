@@ -25,6 +25,9 @@ namespace API.Entities
         public List<UserLike> LikedByUsers { get; set; }
         public List<UserLike> LikedUsers { get; set; }
 
+        // Those properties for messaging
+        public List<Message> MessagesSent { get; set; }
+        public List<Message> MessagesReceived { get; set; }
 
         //Automapper will automatically reconizes this method since it has the Age property and Get Keyword and mapp the dateOfBirth of AppUser class to Age in the MemberDto class
         // public int GetAge() 
